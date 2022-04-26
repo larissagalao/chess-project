@@ -1,14 +1,35 @@
 package boardgame;
 
-public class Piece {
+public abstract class Piece {
 
     protected Position position;
-    private  Board board;
+    public Board board2;
 
-    public Piece(Board board) {
+    public Piece(Board board2) {
+        this.board2 = board2;
+        position = null;
     }
 
-    protected Board getBoard() { //apenas classes dentro do pacote boardgame e subclasses de Piece podem acessar
-        return board;
+    public Board getBoard() { //apenas classes dentro do pacote boardgame e subclasses de Piece podem acessar
+
+        return board2;
+    }
+
+    public abstract boolean[][] possibleMoves();
+
+    public boolean possibleMove(Position position) {
+        return possibleMoves()[position.getRow()][position.getColumn()];
+    }
+
+    public boolean isThereAnyPossibleMove() {
+        boolean[][] mat = possibleMoves();
+        for (int i=0; i<mat.length; i++) {
+            for (int j=0; j<mat.length; j++) {
+                if (mat[i][j]) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
