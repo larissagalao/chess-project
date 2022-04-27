@@ -39,6 +39,12 @@ public class ChessMatch {
         return (ChessPiece)capturedPiece;
     }
 
+    public boolean[][] possibleMovesMatriz(ChessPosition sourcePosition){
+        Position position = sourcePosition.toPosition();
+        validateSourcePosition(position);
+        return board1.pieceReturnPosition(position).possibleMoves();
+    }
+
     private void validateTargetPosition(Position s, Position e){
        if(!board1.pieceReturnPosition(s).possibleMove(e)){
            throw new ChessException("This move is not allowed");
