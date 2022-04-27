@@ -10,7 +10,7 @@ public abstract class Piece {
         position = null;
     }
 
-    public Board getBoard() { //apenas classes dentro do pacote boardgame e subclasses de Piece podem acessar
+    public Board getBoard() {
 
         return board2;
     }

@@ -34,9 +34,15 @@ public class ChessMatch {
         Position s = start.toPosition();
         Position e = end.toPosition();
         validateSourcePosition(s);
-
+        validateTargetPosition(s, e);
         Piece capturedPiece = makeMove(s, e);
         return (ChessPiece)capturedPiece;
+    }
+
+    private void validateTargetPosition(Position s, Position e){
+       if(!board1.pieceReturnPosition(s).possibleMove(e)){
+           throw new ChessException("This move is not allowed");
+       }
     }
 
     private void validateSourcePosition(Position p){

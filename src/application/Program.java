@@ -1,7 +1,5 @@
 package application;
 
-import boardgame.Board;
-import boardgame.Position;
 import chess.ChessException;
 import chess.ChessMatch;
 import chess.ChessPiece;
@@ -40,10 +38,6 @@ public class Program {
                 System.out.println(e2.getMessage());
                 sc.nextLine();
             }
-
-
-
-
         }
 
     }
