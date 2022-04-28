@@ -3,6 +3,7 @@ package chess;
 import boardgame.Board;
 import boardgame.Piece;
 import boardgame.Position;
+import chess.pieces.King;
 import chess.pieces.Rook;
 
 public class ChessMatch {
@@ -70,5 +71,6 @@ public class ChessMatch {
     private void initialSetup(){
         placeNewPiece('a', 1, new Rook(board1, Color.WHITE));
         placeNewPiece('c', 1, new Rook(board1, Color.BLACK));
+        placeNewPiece('c', 4, new King(board1, Color.BLACK));
     }
 }

@@ -1,7 +1,6 @@
 package chess.pieces;
 
 import boardgame.Board;
-import boardgame.Piece;
 import boardgame.Position;
 import chess.ChessPiece;
 import chess.Color;
@@ -9,7 +8,6 @@ import chess.Color;
 public class Rook extends ChessPiece {
 
     public Rook(Board board, Color color) {
-
         super(board, color);
     }
 
@@ -23,6 +21,10 @@ public class Rook extends ChessPiece {
         boolean[][] mat = new boolean[getBoard().getRows()][getBoard().getColumns()];
 
         Position p = new Position(0,0);
+        Position q = new Position(0,0);
+        q.setValues(position.getRow(), position.getColumn());
+
+
 
         //up
 
@@ -31,7 +33,7 @@ public class Rook extends ChessPiece {
             mat[p.getRow()][p.getColumn()] = true;
             p.setRow(p.getRow() - 1);
         }
-        if(getBoard().positionExists(p) && getBoard().thereIsAPiece(p)){
+        if(getBoard().positionExists(p) && getBoard().thereIsAPiece(p) && returnColor(p) != returnColor(q)){
             mat[p.getRow()][p.getColumn()] = true;
         }
 
@@ -42,7 +44,7 @@ public class Rook extends ChessPiece {
             mat[p.getRow()][p.getColumn()] = true;
             p.setRow(p.getRow() + 1);
         }
-        if(getBoard().positionExists(p) && getBoard().thereIsAPiece(p)){
+        if(getBoard().positionExists(p) && getBoard().thereIsAPiece(p) &&  returnColor(p)!=returnColor(q)){
             mat[p.getRow()][p.getColumn()] = true;
         }
 
@@ -53,7 +55,7 @@ public class Rook extends ChessPiece {
             mat[p.getRow()][p.getColumn()] = true;
             p.setColumn(p.getColumn() - 1);
         }
-        if(getBoard().positionExists(p) && getBoard().thereIsAPiece(p)){
+        if(getBoard().positionExists(p) && getBoard().thereIsAPiece(p) && returnColor(p)!=returnColor(q)){
             mat[p.getRow()][p.getColumn()] = true;
         }
 
@@ -64,10 +66,17 @@ public class Rook extends ChessPiece {
             mat[p.getRow()][p.getColumn()] = true;
             p.setColumn(p.getColumn() + 1);
         }
-        if(getBoard().positionExists(p) && getBoard().thereIsAPiece(p)){
+        if(getBoard().positionExists(p) && getBoard().thereIsAPiece(p) && returnColor(p)!=returnColor(q)){
             mat[p.getRow()][p.getColumn()] = true;
         }
 
         return mat;
+    }
+
+    public Color returnColor(Position p){
+        ChessPiece chessPiece = (ChessPiece)getBoard().pieceReturnPosition(p);
+        Color color = chessPiece.getColor();
+
+        return color;
     }
 }
